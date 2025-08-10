@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Traitements</title>
+</head>
+<body>
+    <h1>Liste des Traitements</h1>
+    <a href="{{ url_for('create_treatment') }}">Créer un nouveau traitement</a>
+    <ul>
+        {% for treatment in treatments %}
+        <li>
+            {{ treatment.name }} - {{ treatment.propriete }}
+            <a href="{{ url_for('update_treatment', treatment_id=treatment.id) }}">Modifier</a>
+            <form action="{{ url_for('delete_treatment', treatment_id=treatment.id) }}" method="POST" style="display: inline;">
+                <button type="submit">Supprimer</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

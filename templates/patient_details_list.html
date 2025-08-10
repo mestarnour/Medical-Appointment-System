@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Patient</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 20px;
+        }
+        h2 {
+            color: #4CAF50;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+        li:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        p {
+            font-style: italic;
+            color: #888;
+        }
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            background-color: #f1f1f1;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        a:hover {
+            background-color: #45a049;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Détails du Patient: {{ patient.name }} ## {{ patient.age }} ans ##  {{patient.patient_id }}</h1>
+    </header>
+    
+    <div class="container">
+        <h2>Pathologies:</h2>
+        {% if pathologies %}
+            <ul>
+                {% for pathology in pathologies %}
+                    <li>
+                        <span>{{ pathology.name }}</span>
+                        <span>{{ pathology.propriete }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Ce patient n'a aucune pathologie enregistrée.</p>
+        {% endif %}
+       
+        <a href="{{ url_for('home') }}">Retour à l'accueil</a>
+      
+        <a href="{{ url_for('add_pathology_to_patient', patient_id=patient.patient_id) }}" class="button">Ajouter une pathologie</a>
+    </div>
+</body>
+</html>

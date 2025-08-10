@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un Traitement</title>
+</head>
+<body>
+    <h1>Modifier un Traitement</h1>
+    <form method="POST">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" value="{{ treatment.name }}" required>
+        <label for="propriete">Propriété :</label>
+        <input type="text" id="propriete" name="propriete" value="{{ treatment.propriete }}" required>
+        <button type="submit">Modifier</button>
+    </form>
+    <a href="{{ url_for('list_treatments') }}">Retour à la liste des traitements</a>
+</body>
+</html>

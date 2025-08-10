@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une Pathologie</title>
+    <style>
+        /* Style global de la page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Style de l'en-tête */
+        h1 {
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            background-color: #0066cc;
+            color: white;
+            margin: 0;
+        }
+
+        /* Conteneur principal pour centrer le contenu */
+        .container {
+            width: 50%;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        /* Style du formulaire */
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+            color: #333;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #0066cc;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        /* Style des liens */
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Rendre les éléments plus responsive pour mobile */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ajouter une pathologie au Patient</h1>
+    </header>
+    
+    <div class="container">
+        <form method="POST">
+            <label for="pathology">Choisir une pathologie :</label>
+            <select name="pathology_id" id="pathology">
+                {% for pathology in pathologies %}
+                    <option value="{{ pathology.id }}">{{ pathology.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Ajouter Pathologie</button>
+            
+        </form>
+        <a href="{{ url_for('patient_details', patient_id=patient_id) }}">Retour aux Détails du Patient</a>
+    </div>
+</body>
+</html>

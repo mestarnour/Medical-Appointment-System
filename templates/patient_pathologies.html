@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathologies et Traitements</title>
+</head>
+<body>
+    <h1>Liste des pathologies et traitements du patient</h1>
+
+    <!-- Vérification si des pathologies sont associées au patient -->
+    {% if pathologies %}
+        <ul>
+            {% for pathology in pathologies %}
+                <li>
+                    <h2>{{ pathology.name }}</h2>
+                    <p><strong>Pathologie :</strong> {{ pathology.name }}</p>
+                    <h3>Traitements associés :</h3>
+                    <!-- Vérification s'il y a des traitements pour la pathologie -->
+                    {% if pathology.treatments %}
+                        <ul>
+                            {% for treatment in pathology.treatments %}
+                                <li>{{ treatment.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Aucun traitement associé.</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune pathologie trouvée pour ce patient.</p>
+    {% endif %}
+
+</body>
+</html>
